@@ -9,6 +9,5 @@ Simple chat application which uses Python, Flask and Socket IO.
 pip install -r requirements.txt
 
 **Run**:
-Execute the application by
-
+- Execute the application by,
 python app.py
