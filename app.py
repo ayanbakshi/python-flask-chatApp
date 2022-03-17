@@ -9,13 +9,11 @@ with open('parameters.json','r') as f:
 
 app=Flask(__name__)
 app.debug=True
-#Secret key for defining the sessions in the class
+
 app.config['SECRET_TYPE'] = params['secure_key']
-#makes it easier to communicate with SocketIo
 app.config['SESSION_TYPE'] = params['session_type']
 
 Session(app)
-#marking manage_session as False as we don't want socketio to manage session, instead flask will manage.
 socketio = SocketIO(app,manage_session=False)
 
 @app.route("/")
@@ -27,17 +25,13 @@ def chatroom():
     if request.method=='POST':
         user=request.form['username']
         room=request.form['room']
-        #storing data between requests using session.
         session['username']=user
         session['room']=room
         return render_template('chat.html',session=session)
-
-    #if user is trying to log in
+    
     else:
-        #if user is logged in and trying to reload page.
         if session.get('username') is not None:
-            return render_template('chat.html', session=session)
-        #if user is not logged in    
+            return render_template('chat.html', session=session)  
         else:
             return redirect(url_for('index'))
 
