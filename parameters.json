@@ -1,0 +1,7 @@
+{
+    "params":
+    {
+      "secure_key":"semnatic163@",
+      "session_type":"filesystem"
+    }
+}
